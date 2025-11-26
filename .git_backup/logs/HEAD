@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 901e10ee250d595c11742d7c8c40f5d25f06da16 dasbu <dasbu@users.noreply.github.com> 1764184271 +0530	commit (initial): chore: initial commit of Employee Management System
+901e10ee250d595c11742d7c8c40f5d25f06da16 0000000000000000000000000000000000000000 dasbu <dasbu@users.noreply.github.com> 1764184271 +0530	Branch: renamed refs/heads/master to refs/heads/main
+0000000000000000000000000000000000000000 901e10ee250d595c11742d7c8c40f5d25f06da16 dasbu <dasbu@users.noreply.github.com> 1764184271 +0530	Branch: renamed refs/heads/master to refs/heads/main
+901e10ee250d595c11742d7c8c40f5d25f06da16 5590815f388775cc77188cef44f86ae19022845f dasbu <dasbu@users.noreply.github.com> 1764184953 +0530	pull --rebase origin main (start): checkout 5590815f388775cc77188cef44f86ae19022845f
+5590815f388775cc77188cef44f86ae19022845f 901e10ee250d595c11742d7c8c40f5d25f06da16 dasbu <dasbu@users.noreply.github.com> 1764185786 +0530	rebase (abort): returning to refs/heads/main
+901e10ee250d595c11742d7c8c40f5d25f06da16 901e10ee250d595c11742d7c8c40f5d25f06da16 dasbu <dasbu@users.noreply.github.com> 1764185786 +0530	checkout: moving from main to main

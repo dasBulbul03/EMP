@@ -1,0 +1,47 @@
+chore: initial commit of Employee Management System
+
+# Conflicts:
+#	README.md
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# interactive rebase in progress; onto 5590815
+# Last command done (1 command done):
+#    pick 901e10e # chore: initial commit of Employee Management System
+# No commands remaining.
+# You are currently rebasing branch 'main' on '5590815'.
+#
+# Changes to be committed:
+#	new file:   .gitignore
+#	new file:   Dockerfile
+#	modified:   README.md
+#	new file:   pom.xml
+#	new file:   src/main/java/com/example/ems/EmsApplication.java
+#	new file:   src/main/java/com/example/ems/config/WebConfig.java
+#	new file:   src/main/java/com/example/ems/controller/EmployeeRestController.java
+#	new file:   src/main/java/com/example/ems/controller/EmployeeViewController.java
+#	new file:   src/main/java/com/example/ems/data/SampleDataLoader.java
+#	new file:   src/main/java/com/example/ems/dto/EmployeeRequestDto.java
+#	new file:   src/main/java/com/example/ems/dto/EmployeeResponseDto.java
+#	new file:   src/main/java/com/example/ems/dto/PagedEmployeeResponse.java
+#	new file:   src/main/java/com/example/ems/exception/ApiError.java
+#	new file:   src/main/java/com/example/ems/exception/EmailAlreadyExistsException.java
+#	new file:   src/main/java/com/example/ems/exception/EmployeeNotFoundException.java
+#	new file:   src/main/java/com/example/ems/exception/GlobalRestExceptionHandler.java
+#	new file:   src/main/java/com/example/ems/exception/GlobalViewExceptionHandler.java
+#	new file:   src/main/java/com/example/ems/mapper/EmployeeMapper.java
+#	new file:   src/main/java/com/example/ems/model/Employee.java
+#	new file:   src/main/java/com/example/ems/service/EmployeeService.java
+#	new file:   src/main/java/com/example/ems/service/impl/EmployeeServiceImpl.java
+#	new file:   src/main/java/com/example/ems/util/PageUtil.java
+#	new file:   src/main/resources/application.yml
+#	new file:   src/main/resources/static/css/app.css
+#	new file:   src/main/resources/templates/employee-form.html
+#	new file:   src/main/resources/templates/employee-view.html
+#	new file:   src/main/resources/templates/error.html
+#	new file:   src/main/resources/templates/index.html
+#	new file:   src/test/java/com/example/ems/controller/EmployeeRestControllerIntegrationTest.java
+#	new file:   src/test/java/com/example/ems/service/EmployeeServiceImplTest.java
+#	new file:   src/test/resources/application.yml
+#
