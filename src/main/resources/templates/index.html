@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/app.css?v=2.0}"/>
+</head>
+<body>
+<div class="ems-shell">
+    <main class="ems-shell-main">
+        <section class="ems-card">
+            <header class="ems-header">
+                <div class="ems-brand">
+                    <div class="ems-brand-logo">
+                        <div class="ems-brand-logo-inner">EMS</div>
+                    </div>
+                    <div>
+                        <div class="ems-brand-title">Employee Management</div>
+                        <div class="ems-brand-subtitle">Search, review, and manage your team in one elegant view.</div>
+                    </div>
+                </div>
+                <div class="ems-header-actions">
+                    <span class="ems-tag">
+                        <span class="ems-tag-dot"></span>
+                        <span>Live overview</span>
+                    </span>
+                    <a th:href="@{/employees/new}" class="btn btn-ems-primary btn-sm d-flex align-items-center gap-1">
+                        <i class="bi bi-plus-circle"></i>
+                        <span class="fw-semibold">New Employee</span>
+                    </a>
+                </div>
+            </header>
+
+            <form class="ems-filters-row" method="get" th:action="@{/employees}">
+                <div class="flex-grow-1 d-flex align-items-center gap-2">
+                    <i class="bi bi-search text-secondary"></i>
+                    <input type="text"
+                           class="form-control ems-search-input border-0 shadow-none"
+                           name="search"
+                           placeholder="Search employees by name, email, title or department"
+                           th:value="${search}">
+                </div>
+                <button type="submit" class="btn btn-ems-ghost btn-sm px-3">
+                    <i class="bi bi-search"></i>
+                    Search
+                </button>
+            </form>
+
+            <div class="table-responsive mb-2" th:if="${#lists.size(employeesPage.content) > 0}">
+                <table class="table table-striped table-hover align-middle table-ems mb-0">
+                    <thead>
+                    <tr>
+                        <th scope="col">Employee</th>
+                        <th scope="col" class="text-nowrap">Email</th>
+                        <th scope="col" class="text-nowrap">Job Title</th>
+                        <th scope="col" class="text-nowrap">Department</th>
+                        <th scope="col" class="text-end">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="employee : ${employeesPage.content}">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ems-table-avatar">
+                                    <span th:text="${#strings.substring(employee.firstName,0,1)} + ${#strings.substring(employee.lastName,0,1)}">JD</span>
+                                </div>
+                                <div>
+                                    <div class="fw-semibold" th:text="${employee.firstName} + ' ' + ${employee.lastName}">John Doe</div>
+                                    <div class="text-muted small" th:text="'#' + ${employee.id}">#1</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="small text-break" th:text="${employee.email}">john.doe@example.com</span>
+                        </td>
+                        <td>
+                            <span class="ems-chip ems-chip--role" th:text="${employee.jobTitle}">Developer</span>
+                        </td>
+                        <td>
+                            <span class="ems-chip ems-chip--department" th:text="${employee.department}">Engineering</span>
+                        </td>
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <a th:href="@{|/employees/${employee.id}|}" class="btn btn-ems-ghost border-0 px-2" title="View">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a th:href="@{|/employees/${employee.id}/edit|}" class="btn btn-outline-secondary px-2" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <form th:action="@{|/employees/${employee.id}/delete|}" method="post" class="d-inline">
+                                    <button type="submit"
+                                            class="btn btn-outline-danger px-2 btn-ems-danger"
+                                            title="Delete"
+                                            onclick="return confirm('Are you sure you want to delete this employee?');">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ems-empty-state" th:if="${#lists.size(employeesPage.content) == 0}">
+                <div class="ems-empty-state-title">No employees found</div>
+                <p class="ems-empty-state-text mb-3" th:if="${search == null or search.isEmpty()}">
+                    Start building your team by adding the first employee record.
+                </p>
+                <p class="ems-empty-state-text mb-3" th:if="${search != null and !search.isEmpty()}">
+                    We couldn&apos;t find any employees that match
+                    <span class="fw-semibold text-light" th:text="${'&quot;' + search + '&quot;'}">"Search"</span>.
+                    Try adjusting your search or create a new employee instead.
+                </p>
+                <a th:href="@{/employees/new}" class="btn btn-ems-primary btn-sm">
+                    Add first employee
+                </a>
+            </div>
+
+            <div class="ems-pagination" th:if="${employeesPage.totalPages > 1}">
+                <div class="ems-pagination-summary">
+                    Page <span th:text="${employeesPage.page + 1}">1</span>
+                    of <span th:text="${employeesPage.totalPages}">3</span>
+                    · <span th:text="${employeesPage.totalElements}">0</span> employees total
+                </div>
+                <nav aria-label="Employee list pages">
+                    <ul class="pagination">
+                        <li class="page-item" th:classappend="${employeesPage.page == 0} ? 'disabled'">
+                            <a class="page-link"
+                               th:href="@{/employees(page=${employeesPage.page - 1}, size=${employeesPage.size}, search=${search}, sort=${sort})}">
+                                Previous
+                            </a>
+                        </li>
+                        <li class="page-item"
+                            th:each="i : ${#numbers.sequence(0, employeesPage.totalPages - 1)}"
+                            th:classappend="${i == employeesPage.page} ? 'active'">
+                            <a class="page-link"
+                               th:text="${i + 1}"
+                               th:href="@{/employees(page=${i}, size=${employeesPage.size}, search=${search}, sort=${sort})}">
+                                1
+                            </a>
+                        </li>
+                        <li class="page-item" th:classappend="${employeesPage.last} ? 'disabled'">
+                            <a class="page-link"
+                               th:href="@{/employees(page=${employeesPage.page + 1}, size=${employeesPage.size}, search=${search}, sort=${sort})}">
+                                Next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-q2kyX1q8f+2v0nXWf9eKJeNEqXWiwxC6vJzpuGHh9jZcGx9H9nE54cVGuJ9a8z2Q"
+        crossorigin="anonymous"></script>
+</body>
+</html>
