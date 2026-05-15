@@ -12,7 +12,7 @@ target/
 
 # Maven
 .mvn/
-repository/
+/repository/
 dependency-reduced-pom.xml
 
 # IntelliJ
